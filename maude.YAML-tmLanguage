@@ -1,0 +1,34 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Maude
+scopeName: source.maude
+fileTypes: [maude]
+uuid: 7eb79cba-93e0-4258-8f40-b78359ca29b2
+
+patterns:
+- name: comment.line
+  match: ((\*\*\*)|(---)).*
+- name: comment.block
+  begin: \*\*\*\(
+  end: \)$
+
+- name: keyword.control.module
+  match: \b(mod|fmod|omod|endm|endfm|endm|is)\b
+
+- name: keyword.control.imports
+  match: \b(protecting|including|extending)\b
+
+- name: keyword.control.sorts
+  match: \b(sorts|subsorts)\b
+
+- name: keyword.control.statements
+  match: \b(op|ops|var|vars|eq|ceq)\b
+
+- name: keyword.operator
+  match: (:|(\-\>)|=|\/\\|\<|\>)|(\.\s*$)
+
+- name: constant.language
+  match: \b(true|false|nil)\b
+
+- name: constant.numeric
+  match: \b([0-9]+|0([xX][0-9a-fA-F]+|[oO][0-7]+))\b
