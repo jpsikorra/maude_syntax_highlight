@@ -44,7 +44,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(op|ops|var|vars|eq|ceq)\b</string>
+			<string>\b(op|ops|var|vars|eq|ceq|rl)\b</string>
 			<key>name</key>
 			<string>keyword.control.statements</string>
 		</dict>
