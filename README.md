@@ -1,2 +1,2 @@
-# Maude SublimeText 3 syntax highlightin
+# Maude Syntax Highlighting for SublimeText 2/3
 For a more colorful Maude.
