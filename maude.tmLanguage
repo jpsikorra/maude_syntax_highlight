@@ -11,18 +11,18 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>((\*\*\*)|(---)).*</string>
-			<key>name</key>
-			<string>comment.line</string>
-		</dict>
-		<dict>
 			<key>begin</key>
 			<string>\*\*\*\(</string>
 			<key>end</key>
 			<string>\)$</string>
 			<key>name</key>
 			<string>comment.block</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>((\*\*\*)|(---)).*</string>
+			<key>name</key>
+			<string>comment.line</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -38,7 +38,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(sorts|subsorts)\b</string>
+			<string>\b(sort|subsort|sorts|subsorts)\b</string>
 			<key>name</key>
 			<string>keyword.control.sorts</string>
 		</dict>
@@ -47,6 +47,18 @@
 			<string>\b(op|ops|var|vars|eq|ceq)\b</string>
 			<key>name</key>
 			<string>keyword.control.statements</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(Bool|Nat|Zero|NzNat|Int|NzInt|Rat|PosRat|NzRat|Float|FiniteFloat|String|Char|Qid|List\{.+\}|NeList\{.+\}|NatList|Bool|Universal)\b</string>
+			<key>name</key>
+			<string>storage.type</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(if|then|else|fi)\b</string>
+			<key>name</key>
+			<string>keyword.control.flow</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -62,7 +74,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b([0-9]+|0([xX][0-9a-fA-F]+|[oO][0-7]+))\b</string>
+			<string>\b([0-9]+)\b</string>
 			<key>name</key>
 			<string>constant.numeric</string>
 		</dict>
