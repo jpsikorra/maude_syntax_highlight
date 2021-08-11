@@ -19,6 +19,7 @@ contexts:
     - include: constant
     - include: operators
 
+
   strings:
     # Strings begin and end with quotes, and use backslashes as an escape
     # character
@@ -68,9 +69,14 @@ contexts:
       scope: constant.numeric.maude
 
   operators:
-    - match: '(:|(\-\>)|=|\/\\|\<|\>)|(\.\s*$)'
+    - match: '(:|(\-\>)|(\=\>)|\<|\>)|(\.\s*)'
       scope: keyword.operator.maude
 
+    - match: '(\+|\-)'
+      scope: keyword.operator.arithmetic.maude
+
+    - match: '(=[^\/]|\=\/\=|\/\\)'
+      scope: keyword.operator.logical.maude
 
   comments:
     # block comments begin with ***( and end with )
@@ -79,11 +85,7 @@ contexts:
       push: line_block
 
     # single line comments begin with *** or ---
-    - match: '\*\*\*[^\(]'
-      scope: punctuation.definition.comment.line.maude
-      push: line_comment
-
-    - match: '\-\-\-'
+    - match: '(\*\*\*[^\(])|(\-\-\-)'
       scope: punctuation.definition.comment.line.maude
       push: line_comment
 
