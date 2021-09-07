@@ -18,7 +18,11 @@ contexts:
     - include: storage
     - include: constant
     - include: operators
+    - include: entity
 
+  entity:
+    - match: '(?<=(rl |crl) \[)\s*([a-zA-Z0-9\-\+\_])+(?=\s*\]\s*:\s*)'
+      scope: entity.name.function.maude
 
   strings:
     # Strings begin and end with quotes, and use backslashes as an escape
