@@ -1,0 +1,107 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+name: Maude
+file_extensions: [maude, ]
+scope: source.maude
+
+contexts:
+
+  # The prototype context is prepended to all contexts but those setting
+  # meta_include_prototype: false.
+  prototype:
+    - include: comments
+
+  main:
+    - include: strings
+    - include: keywords
+    - include: storage
+    - include: constant
+    - include: operators
+    - include: entity
+
+  entity:
+    - match: '(?<=(rl |crl) \[)\s*([a-zA-Z0-9\-\+\_])+(?=\s*\]\s*:\s*)'
+      scope: entity.name.function.maude
+
+  strings:
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character
+    - match: '"'
+      scope: punctuation.definition.string.begin.maude
+      push: double_quoted_string
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.maude
+    - match: '\\.'
+      scope: constant.character.escape.maude
+    - match: '"'
+      scope: punctuation.definition.string.end.maude
+      pop: true
+
+  keywords:
+    # Keywords are if, else for and while.
+    # Note that blackslashes don't need to be escaped within single quoted
+    # strings in YAML. When using single quoted strings, only single quotes
+    # need to be escaped: this is done by using two single quotes next to each
+    # other.
+
+    - match: '\b(mod|fmod|omod|endm|endfm|endm|is)\b'
+      scope: keyword.control.module.maude
+
+    - match: '\b(protecting|including|extending)\b'
+      scope: keyword.control.imports.maude
+
+    - match: '\b(sort|subsort|sorts|subsorts)\b'
+      scope: keyword.control.sorts.maude
+
+    - match: '\b(op|ops|var|vars|eq|ceq|rl|crl|cmb|reduce|red|rewrite|rew)\b'
+      scope: keyword.control.statements.maude
+
+    - match: '\b(if|else|for|while)\b'
+      scope: keyword.control.flow.maude
+
+  storage:
+    - match: '\b(Bool|Nat|Zero|NzNat|Int|NzInt|Rat|PosRat|NzRat|Float|FiniteFloat|String|Char|Qid|List\{.+\}|NeList\{.+\}|NatList|Bool|Universal)\b'
+      scope: storage.type.maude
+
+  constant:
+    - match: '\b(true|false|nil)\b'
+      scope: constant.language.maude
+
+    - match: '\b([0-9]+)\b'
+      scope: constant.numeric.maude
+
+  operators:
+    - match: '(:|(\-\>)|(\=\>)|\<|\>)|(\.\s*)'
+      scope: keyword.operator.maude
+
+    - match: '(\+|\-)'
+      scope: keyword.operator.arithmetic.maude
+
+    - match: '(=[^\/]|\=\/\=|\/\\)'
+      scope: keyword.operator.logical.maude
+
+  comments:
+    # block comments begin with ***( and end with )
+    - match: '\*\*\*\('
+      scope: punctuation.definition.comment.block.begin.maude
+      push: line_block
+
+    # single line comments begin with *** or ---
+    - match: '(\*\*\*[^\(])|(\-\-\-)'
+      scope: punctuation.definition.comment.line.maude
+      push: line_comment
+
+
+  line_comment:
+    - meta_scope: comment.line.maude
+    - match: '\n'
+      pop: true
+
+  line_block:
+    - meta_scope: comment.block.maude
+    - match: '\s*\)\s*\n'
+      scope: punctuation.definition.comment.end.maude
+      pop: true
+

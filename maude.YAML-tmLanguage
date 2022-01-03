@@ -9,7 +9,7 @@ patterns:
 - name: comment.block
   begin: \*\*\*\(
   end: \)$
-  
+
 - name: comment.line
   match: ((\*\*\*)|(---)).*
 
@@ -23,7 +23,7 @@ patterns:
   match: \b(sort|subsort|sorts|subsorts)\b
 
 - name: keyword.control.statements
-  match: \b(op|ops|var|vars|eq|ceq|rl)\b
+  match: \b(op|ops|var|vars|eq|ceq|rl|crl|cmb|reduce|red|rewrite|rew)\b
 
 - name: storage.type
   match: \b(Bool|Nat|Zero|NzNat|Int|NzInt|Rat|PosRat|NzRat|Float|FiniteFloat|String|Char|Qid|List\{.+\}|NeList\{.+\}|NatList|Bool|Universal)\b
